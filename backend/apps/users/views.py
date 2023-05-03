@@ -26,9 +26,6 @@ class UserToAdmin(GenericAPIView):
         if user.is_staff:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        if user == self.request.user:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
         user.is_staff = True
         user.save()
         serializer = UserSerializer(user)
